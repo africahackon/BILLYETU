@@ -1,24 +1,46 @@
+# Logs and system files
 *.log
 .DS_Store
+Thumbs.db
+
+# Environment files
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
+auth.json
+
+# IDE and editor settings
 /.idea
-/.nova
-/.phpunit.cache
 /.vscode
+/.fleet
+/.nova
 /.zed
-/auth.json
+/phpactor.json
+
+# Dependencies
+/vendor
 /node_modules
+npm-debug.log
+yarn-error.log
+
+# Laravel & PHP specific
+/.phpunit.result.cache
+/.phpunit.cache
+/storage/*.key
+/storage/pail
+
+# Laravel build files
 /public/build
 /public/hot
 /public/storage
-/storage/*.key
-/storage/pail
-/vendor
+
+# Laravel old versions
+bootstrap/compiled.php
+app/storage/
+public_html/storage
+public_html/hot
+
+# Vagrant / Homestead
+/.vagrant
 Homestead.json
 Homestead.yaml
-Thumbs.db
