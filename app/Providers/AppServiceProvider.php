@@ -20,19 +20,25 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
-            'lead' => \App\Models\Lead::class,
-            'tenant_leads' => \App\Models\Tenants\TenantLeads::class,
-        ]);
-        
-        Vite::prefetch(concurrency: 3);
-        
-        // Start queue worker automatically in production or when explicitly enabled
-        if (!app()->runningInConsole() && (app()->environment('production') || env('AUTO_START_QUEUE_WORKER', false))) {
-            $this->startQueueWorker();
-        }
+{
+    \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
+        'lead' => \App\Models\Lead::class,
+        'tenant_leads' => \App\Models\Tenants\TenantLeads::class,
+    ]);
+    
+    Vite::prefetch(concurrency: 3);
+
+    // Force HTTPS in production
+    if (app()->environment('production')) {
+        \Illuminate\Support\Facades\URL::forceScheme('https');
     }
+    
+    // Start queue worker automatically in production or when explicitly enabled
+    if (!app()->runningInConsole() && (app()->environment('production') || env('AUTO_START_QUEUE_WORKER', false))) {
+        $this->startQueueWorker();
+    }
+}
+
     
     /**
      * Start the queue worker in the background.
