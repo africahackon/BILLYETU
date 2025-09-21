@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Exports;
+namespace App\Models\Exports;
 
 use App\Models\Tenants\TenantPayment;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class TenantPaymentsExport implements FromCollection
+class TenantPaymentExport implements FromCollection
 {
     public function collection()
     {

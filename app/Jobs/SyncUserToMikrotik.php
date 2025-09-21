@@ -294,3 +294,4 @@ class SyncUserToMikrotik implements ShouldQueue
         //         ));
         // }
 }
+}
