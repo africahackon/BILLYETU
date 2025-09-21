@@ -8,21 +8,21 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first (for better caching)
+# Copy composer files first (for caching)
 COPY composer.json composer.lock ./
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install PHP dependencies without running artisan scripts (since artisan not copied yet)
+# Install PHP dependencies without artisan scripts
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-scripts
 
 # Copy the rest of the application
 COPY . .
 
-# Run composer again to trigger artisan-related scripts (now artisan exists)
+# Optional: only if artisan scripts are required after full copy
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Expose port and run Laravel
+# Expose port and run migrations + serve
 EXPOSE 8000
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+CMD ["sh", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000"]
