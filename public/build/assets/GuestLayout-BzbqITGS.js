@@ -1,0 +1,1 @@
+import{i as s,o as t,d as o,j as a}from"./app-DQ1vlaC4.js";const r={class:"flex min-h-screen flex-col items-center bg-white pt-6 sm:justify-center sm:pt-0"},c={class:"mt-6 w-md overflow-hidden bg- px-6 py-20 shadow-xl sm:max-w-md sm:rounded-lg"},l={__name:"GuestLayout",setup(n){return(e,d)=>(t(),s("div",r,[o("div",c,[a(e.$slots,"default")])]))}};export{l as _};
