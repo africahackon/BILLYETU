@@ -99,7 +99,7 @@ class RegisteredUserController extends Controller
 
             // 2. Assign a domain/subdomain
             $tenant->domains()->create([
-                'domain' => $subdomain . '.yourapp.com',
+                'domain' => $subdomain . '.billyetu-production.up.railway.app',
             ]);
 
             // 3. Create a tenant admin user in the tenant's DB
@@ -122,7 +122,7 @@ class RegisteredUserController extends Controller
         }
 
         // 4. Redirect to tenant's subdomain dashboard
-        // return \Inertia\Inertia::location('https://' . $subdomain . '.yourapp.com/dashboard'); // Uncomment for production subdomain redirect
+        // return \Inertia\Inertia::location('https://' . $subdomain . '.billyetu-production.up.railway.app/dashboard'); // Uncomment for production subdomain redirect
         return redirect()->route('dashboard');
     }
 }

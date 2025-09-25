@@ -5,6 +5,11 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
+use App\Models\Lead;
+use App\Models\Tenants\TenantLeads;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\URL;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,16 +26,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
 {
-    \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
-        'lead' => \App\Models\Lead::class,
-        'tenant_leads' => \App\Models\Tenants\TenantLeads::class,
+    Relation::morphMap([
+        'lead' => Lead::class,
+        'tenant_leads' => TenantLeads::class,
     ]);
     
     Vite::prefetch(concurrency: 3);
 
     // Force HTTPS in production
     if (app()->environment('production')) {
-        \Illuminate\Support\Facades\URL::forceScheme('https');
+        URL::forceScheme('https');
     }
     
     // Start queue worker automatically in production or when explicitly enabled
