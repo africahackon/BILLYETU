@@ -18,4 +18,9 @@ export default defineConfig({
             },
         }),
     ],
+    build: {
+        outDir: 'public/build', // <-- this ensures Vite outputs to Laravel's public/build folder
+        emptyOutDir: true,
+        manifest: true,
+    },
 });
