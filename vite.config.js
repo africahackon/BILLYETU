@@ -3,7 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    base: process.env.ASSET_URL || '/', // respects .env for production domain
+    base: process.env.ASSET_URL || '/',
     plugins: [
         laravel({
             input: 'resources/js/app.js',
@@ -19,8 +19,11 @@ export default defineConfig({
         }),
     ],
     build: {
-        outDir: 'public/build', // <-- this ensures Vite outputs to Laravel's public/build folder
+        outDir: 'public/build',
         emptyOutDir: true,
-        manifest: true,
+        manifest: true,       //  must be true
+        rollupOptions: {
+            input: 'resources/js/app.js',  // make sure your entry exists
+        },
     },
 });
