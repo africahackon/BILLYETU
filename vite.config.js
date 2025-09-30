@@ -3,8 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    // Let Laravel handle asset URLs correctly
-    base: process.env.APP_ENV === 'production' ? '/build/' : '/',
+    base: process.env.ASSET_URL || '/', // respects .env for production domain
     plugins: [
         laravel({
             input: 'resources/js/app.js',
