@@ -3,7 +3,8 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    base: 'https://billyetu-production.up.railway.app/', // Force HTTPS for all assets
+    // Let Laravel handle asset URLs correctly
+    base: process.env.APP_ENV === 'production' ? '/build/' : '/',
     plugins: [
         laravel({
             input: 'resources/js/app.js',
