@@ -1,7 +1,6 @@
 <script setup>
 import { ref, watch, computed } from 'vue'
 const today = new Date()
-// General filter for payments by year, month, week
 const filterYear = ref(today.getFullYear())
 const filterMonth = ref(0) // 0 means all months
 const filterWeek = ref(0) // 0 means all weeks

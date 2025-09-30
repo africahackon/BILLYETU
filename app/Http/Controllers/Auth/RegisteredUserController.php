@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             $baseSubdomain = strtolower(preg_replace('/[^a-z0-9]+/', '-', $request->business_name));
             $subdomain = $baseSubdomain;
             $i = 1;
-            while (\App\Models\Tenant::query()->whereHas('domains', function($q) use ($subdomain) {
+            while (Tenant::query()->whereHas('domains', function($q) use ($subdomain) {
                 $q->where('domain', $subdomain . '.yourapp.com');
             })->exists()) {
                 $subdomain = $baseSubdomain . '-' . $i;
@@ -104,7 +104,7 @@ class RegisteredUserController extends Controller
 
             // 3. Create a tenant admin user in the tenant's DB
             $tenant->run(function () use ($request) {
-                \App\Models\User::create([
+                User::create([
                     'name' => $request->username,
                     'username' => $request->username,
                     'business_name' => $request->business_name,

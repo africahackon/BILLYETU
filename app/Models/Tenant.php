@@ -1,17 +1,5 @@
 <?php
 
-/*namespace App\Models;
-use Stancl\Tenancy\Database\Concerns\UsesTenantConnection;
-use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
-use Stancl\Tenancy\Database\Concerns\HasDomains;
-
-class Tenant extends BaseTenant
-{
-    use HasDomains;
-} */
-
-
-
 namespace App\Models;
 
 use Stancl\Tenancy\Database\Concerns\HasDomains;
