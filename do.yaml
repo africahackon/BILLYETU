@@ -1,0 +1,16 @@
+name: billyetu
+services:
+  - name: web
+    build_command: |
+      composer install --no-dev --optimize-autoloader
+      php artisan config:clear
+      php artisan route:clear
+      php artisan view:clear
+      npm ci
+      npm run build
+    run_command: |
+      php artisan migrate --force
+      php-fpm
+    environment_slug: php
+    http_port: 8080
+    instance_size_slug: basic-xxs
