@@ -21,9 +21,11 @@ export default defineConfig({
     build: {
         outDir: 'public/build',
         emptyOutDir: true,
+        
         manifest: true,       //  must be true
         rollupOptions: {
             input: 'resources/js/app.js',  // make sure your entry exists
         },
+
     },
 });
